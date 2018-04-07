@@ -30,6 +30,9 @@
     * 전체 : cells.clear
     * 부분: range("a1:b6").clear
 
+### 숫자를 영문으로 바꾸기
+    * chr(65)
+
 ### function(펑션, 함수)이란?
     * return 값이 있는 subroutine
 
