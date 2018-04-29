@@ -1,6 +1,65 @@
 # excel_vba
 엑셀을 활용한 업무자동화
 
+## advanced filter
+```vb
+Sub main_advanced_filter(Sub main_advanced_filter()
+    Sheets("filter").Range("a9:d10000").ClearFormats
+    Call advancedFilter
+    정렬조건 = Sheets("filter").Range("b5").Value
+    Call sort(정렬조건)
+
+    'Sheets("report").Range("a1").Value = Sheets("filter").Range("a8").CurrentRegion
+
+End Sub
+Sub advancedFilter()
+    Sheets("list").Range("A1").CurrentRegion.advancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Sheets("filter").Range("A1").CurrentRegion, CopyToRange:=Range( _
+        "filter!Extract"), Unique:=False
+End Sub
+Sub sort(p정렬조건)
+    ActiveWorkbook.Worksheets("filter").sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("filter").sort.SortFields.Add Key:=Range("B9:B47") _
+        , SortOn:=xlSortOnValues, Order:=p정렬조건, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("filter").sort
+        .SetRange Range("A8").CurrentRegion
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+End Sub
+
+    Sheets("filter").Range("a9:d10000").ClearFormats
+    Call advancedFilter
+    정렬조건 = Sheets("filter").Range("b5").Value
+    Call sort(정렬조건)
+
+    'Sheets("report").Range("a1").Value = Sheets("filter").Range("a8").CurrentRegion
+
+End Sub
+Sub advancedFilter()
+    Sheets("list").Range("A1").CurrentRegion.advancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Sheets("filter").Range("A1").CurrentRegion, CopyToRange:=Range( _
+        "filter!Extract"), Unique:=False
+End Sub
+Sub sort(p정렬조건)
+    ActiveWorkbook.Worksheets("filter").sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("filter").sort.SortFields.Add Key:=Range("B9:B47") _
+        , SortOn:=xlSortOnValues, Order:=p정렬조건, DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("filter").sort
+        .SetRange Range("A8").CurrentRegion
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+End Sub
+
+```
+
 ### A1셀에 '안녕하세요' 출력하는 서브루틴(subroutine)만들기
     * 서브루틴이란? ALT+F11
     * VBE(Visual Basic Editor)
